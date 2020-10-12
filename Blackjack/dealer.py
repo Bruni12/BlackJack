@@ -2,7 +2,7 @@
 
 class DealerAI():
     def __init__(self,dealer_score):
-        self._dealer_score = dealer_score # Need to know what is the dealer score for playing
+        self._dealer_score = dealer_score # What the dealers score is.
 
     @property
     def dealer_score(self):
@@ -13,11 +13,15 @@ class DealerAI():
         self._dealer_score = value
 
     ########
-    #This is the Mind of the Dealer
-    #Will decide if to hit or not
+    #The dealer must hit if his total is below 17
     ########
     def is_hit(self):
         if int(self._dealer_score) > 17:
             return False
         else:
             return True
+
+    #####
+    #If the dealer has any high aces (counted as 11) as part of his total, 
+    #he must hit while his count is below 18.        
+    #####

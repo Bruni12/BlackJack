@@ -78,12 +78,12 @@ class Deal():
 
         if is_player:
             self.player_cards.append(card)
-            #Check if to modify ACE from eleven to one
+            #Check When changing ACE from eleven to one
             self.handle_aces(card,self.player_cards, self.get_player_score())
 
         if not is_player:
             self.dealer_cards.append(card)
-            # Check if to modify ACE from eleven to one
+            #Check When changing ACE from eleven to one
             self.handle_aces(card,self.dealer_cards, self.get_dealer_score())
 
         print(card.name)
@@ -92,14 +92,14 @@ class Deal():
         if display:
             self.display_card(card_label=card_label, card_image=card_image)
         else:
-            #Change the is_displayed value from automatic True to False
+            #Change the is_displayed value from automatic True to False.
             card.is_displayed = False
             hidden_card = Card.hidden_card()
             card_label.configure(image = hidden_card)
             card_label.image = hidden_card
 
 
-        #Remove from the deck the selected card:
+        #Remove selected cards from the deck:
         self.deck.remove(card)
         print(f"You got {len(self.deck)} cards in deck, because now {card.name} is taken!")
 
@@ -114,9 +114,9 @@ class Deal():
         card2 = self.get_card(self.player_card2_label)
 
     #########
-    #This function would triggered when player hits the hit button
-    #This will give him another card
-    #And will check if the player is busted by the end of the hit
+    #This function is triggered when player pushes the hit button.
+    #This will provide another card.
+    #And checks if the player is busted after the hit.
     #########
     def hit(self,dealer_card_2 = None, is_player = True):
         #Bring with hidden card by default (Maybe its the dealer ? )
@@ -138,7 +138,7 @@ class Deal():
 
             return card
 
-        #If its the dealer and not the player:
+        #If it's the dealer and not the player:
         else:
             new_card = Label(self.dealer_cards_frame, image = hidden_card,bg = background_color)
             new_card.pack(side = LEFT)
@@ -190,7 +190,7 @@ class Deal():
 
 
     ##########
-    #This will set the score board when the user clicks deal:
+    #This will reset the score board when the user clicks deal:
     ##########
 
     def set_scoreboard(self):
@@ -315,7 +315,7 @@ class Deal():
 
 
     #######
-    #This Method is going to decide who is the winner
+    #This Method decides the winner
     #######
     def decider(self):
         player_score = int(self.get_player_score())
@@ -347,8 +347,30 @@ class Deal():
             else:
                 result.configure(fg = '#FFFFFF', text = tied_text)
 
+    #######
+    #This Method decides who gets a point
+    #######            
+
+    def decider(self):
+        player_point = int(self.get_player_point())
+        dealer_point = int(self.get_dealer_point())
 
 
+        result = Label(self.deal_results_frame, text = '', font = font_large, bg = background_color)
+        result.pack(fill = BOTH, side = BOTTOM)
+
+        player_won_text = 'PLAYER GETS A POINT!'
+        dealer_won_text = 'DEALER GETS A POINT!'
+        tied_text = 'PLAYER AND DEALER BOTH GET A POINT'
+        both_busted = 'NO POINTS AWARDED!'
+
+        if self.player_is_busted() and not self.dealer_is_busted():
+            if not player_point > dealer_point:
+                result.configure(fg = "#00FF00", text = player_won_text)
+            elif player_point < dealer_point:
+                result.configure(fg = "#FF0000", text = dealer_won_text)
+            else:
+                result.configure(fg = '#FFFFFF', text = tied_text)
 
     ##########
     #This function will check the ace count in cards of dealer or player
@@ -361,7 +383,7 @@ class Deal():
         return counter
 
     ##########
-    #This function returns all cards instances that they are Aces
+    #This function returns all cards instances when they are Aces
     ##########
     def all_aces(self,cards):
         aces = []
@@ -372,7 +394,7 @@ class Deal():
 
 
     ##########
-    #This function returns all cards instances that they are NOT Aces
+    #This function returns all cards instances when they are NOT Aces
     ##########
     def all_not_aces_value(self,cards):
         not_aces = 0
@@ -384,8 +406,8 @@ class Deal():
 
 
     ###########
-    #This function is going to check either Ace value must be eleven or one
-    #It well set the Ace value to one if he sees that total score gonna be over 21
+    #This function will check to see if Ace value is eleven or one
+    #It well set the Ace value to one if he sees that total score goes over 21
     #first argument     - self.player_cards or self.dealer cards
     #second argument    - self.get_player_score() or self.get_dealer_score()
     ###########
@@ -395,11 +417,11 @@ class Deal():
             for card in cards:
                 if str(card.name)[0] == 'A': #Only One, Looping to find it:
                     card.value = 1
-
+    #Worth "1"
         if self.ace_count(cards) > 1:
             if str(current_card.name)[0] == 'A':
                 current_card.value = 1
-
+    #Worth "11"
             elif self.all_not_aces_value(cards) >= 12 - self.ace_count(cards):
                 for card in self.all_aces(cards):
                     card.value = 1

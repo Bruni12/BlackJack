@@ -6,7 +6,7 @@ from deal import Deal
 
 root = Tk()
 root.geometry('1280x720')
-root.title('JimShapedCasino - Blackjack')
+root.title('Blackjack')
 root.configure(bg = background_color)
 
 #####

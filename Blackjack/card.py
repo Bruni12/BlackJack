@@ -57,7 +57,7 @@ class Card():
     @staticmethod
     def random_card(instances):
         cards = instances
-        random.shuffle(cards) # will shuffle the order of the cards so like real life ;)
+        random.shuffle(cards) # will shuffle the order of the cards Like in real life! ;)
 
         dealed_card = cards[0] # After shuffling just give the first card
         return dealed_card     # And return it
