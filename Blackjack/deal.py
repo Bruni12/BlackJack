@@ -175,7 +175,6 @@ class Deal():
         return str(value)
 
 
-
     #########
     #Get dealers current score:
     #########

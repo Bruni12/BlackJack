@@ -13,6 +13,10 @@ root.configure(bg = background_color)
 #UI Frames
 ####
 
+#####
+#The code is writtent to easily add a second player when needed.
+#####
+
 #Player:
 player_frame = Frame(root, bg = background_color, ** hightlight_frame_with_white )
 player_frame.pack(side = BOTTOM, fill = X)
