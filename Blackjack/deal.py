@@ -240,6 +240,51 @@ class Deal():
     def dealer_is_tied(self):
         if int(self.get_dealer_score()) = 21:
             return True
+    #####
+    # Player win over the dealer is worth 1 point
+    #####
+    def dealer_point_label(self):    
+        if set(dealer_hand) <=17:
+            for player in range(players):
+                if set(player_hands[player]) >=20 < 21:
+                    curr_player_results[0,player] = 1
+                else:
+                    curr_player_results[0,dealer] = 0 
+
+    #####
+    # Dealer win over a player is worth 1 point
+    #####
+    def dealer_point_label(self):    
+        if set(dealer_hand) <=20 < 21:
+            for player in range(players):
+                if set(player_hands[player]) <= 17:
+                    curr_player_results[0,player] = 0
+                else:
+                    curr_player_results[0,dealer] = 1                
+
+
+    #####
+    # Dealer checks for 21, if Dealer and player both get 21 they each get 1 point.
+    #####
+    def dealer_point_label(self):    
+        if set(dealer_hand) == blackjack:
+            for player in range(players):
+                if set(player_hands[player]) == blackjack:
+                    curr_player_results[0,player] = 1
+                else:
+                    curr_player_results[0,dealer] = 1   
+
+    #####
+    # Dealer checks for 21, if dealer gets blackjack then dealer get 2 points
+    #####  
+
+    def dealer_point_Label(self):
+        if set(dealer_hand) == blackjack:
+            for player in range(players):
+                if set(player_hands[player]) != blackjack:
+                    curr_player_results[0,player] = 0
+                else:
+                    curr_player_results[0,dealer] = 2                   
             
     ########
     #Check if Player is busted
