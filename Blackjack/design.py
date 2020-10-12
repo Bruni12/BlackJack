@@ -5,7 +5,7 @@ table_font = 'Helvetica'
 
 background_color = '#FF6666'
 
-font_small  = (table_font,24)
+font_small  = (table_font,26)
 font_medium = (table_font,36)
 font_large  = (table_font,60)
 

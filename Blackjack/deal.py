@@ -37,10 +37,12 @@ class Deal():
         self.player_point_label         = player_point_label        #Player Point
         self.dealer_point_label         = dealer_point_label        #Dealer Point  
         self.dealer_cards_frame         = dealer_cards_frame        #Dealer cards Frame
+        self.player_tied_message        = player_tied_message       #Player tied message
+        self.dealer_tied_message        = dealer_tied_message       #Dealer tied message
         self.player_busted_message      = player_busted_message     #Busted case for player
         self.dealer_busted_message      = dealer_busted_message     #Busted case for dealer
-        self.deal_results_frame         = deal_results_frame        #results of the gameplay
-        self.split                      = split                     #changing the split button dynamically if the values of first two cards are equal
+        self.deal_results_frame         = deal_results_frame        #Results of the gameplay
+        self.split                      = split                     #Changing the split button dynamically if the values of first two cards are equal
 
 
         ########
@@ -223,6 +225,22 @@ class Deal():
                 if not str(widget.winfo_name()).startswith('dealcard'):
                     widget.forget()
 
+    ########
+    #Check if player is tied with dealer at 21
+    #This check will run on each hit, so we know if to continue or not
+    ########
+    def player_is_tied(self):
+        if int(self.get_player_score()) = 21:
+            return True
+       
+    ########
+    #Check if dealer is tied with player at 21
+    #This check will run on each hit, so we know if to continue or not
+    ########
+    def dealer_is_tied(self):
+        if int(self.get_dealer_score()) = 21:
+            return True
+            
     ########
     #Check if Player is busted
     #This check will run on each hit, so we know if to continue or not
