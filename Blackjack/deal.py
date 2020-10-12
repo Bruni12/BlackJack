@@ -417,11 +417,11 @@ class Deal():
             for card in cards:
                 if str(card.name)[0] == 'A': #Only One, Looping to find it:
                     card.value = 1
-    #Worth "1"
+   
         if self.ace_count(cards) > 1:
             if str(current_card.name)[0] == 'A':
                 current_card.value = 1
-    #Worth "11"
+    
             elif self.all_not_aces_value(cards) >= 12 - self.ace_count(cards):
                 for card in self.all_aces(cards):
                     card.value = 1
